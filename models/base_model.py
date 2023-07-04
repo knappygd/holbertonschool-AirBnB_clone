@@ -7,14 +7,15 @@ import uuid
 class BaseModel:
     """
     BaseModel defines all common attributes/methods for other classes.
-
-    Attributes:
-        id: BaseModel id.
-        created_at: Date and time at creation.
-        updated_at: Date and time of last update.
     """
 
     def __init__(self):
+        """
+        Attributes:
+            id: unique id generated
+            created_at: creation date
+            updated_at: updated date
+        """
         self.id = str(uuid.uuid4())
         self.created_at = datetime.utcnow()
         self.updated_at = datetime.utcnow()
