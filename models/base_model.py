@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ BaseModel class for hbnb. """
 from datetime import datetime
+import uuid
 
 
 class BaseModel:
@@ -13,9 +14,10 @@ class BaseModel:
         updated_at: Date and time of last update.
     """
 
-    id = ""
-    created_at = datetime.utcnow()
-    updated_at = datetime.utcnow()
+    def __init__(self):
+        self.id = str(uuid.uuid4())
+        self.created_at = datetime.utcnow()
+        self.updated_at = datetime.utcnow()
 
     def save(self):
         """ Updates `updated_at` with the current datetime. """
