@@ -3,6 +3,7 @@
 and deserializes JSON file to instances.
 """
 import json
+from models.base_model import BaseModel
 
 
 class FileStorage:
@@ -14,7 +15,7 @@ class FileStorage:
         return self.__objects
 
     def new(self, obj):
-        key = "{}.{}".format(type(self).__name__, obj.id)
+        key = "{}.{}".format(type(obj).__name__, obj.id)
         self.__objects[key] = obj
 
     def save(self):
@@ -26,7 +27,7 @@ class FileStorage:
         try:
             with open(self.__file_path, "r") as file:
                 for key, value in (json.load(file)).items():
-                    value = eval(value["__class__"])(**value)
+                    value = BaseModel(**value)
                     self.__objects[key] = value
         except FileNotFoundError:
             pass
