@@ -1,23 +1,19 @@
 #!/usr/bin/python3
-""" The console for hbnb. """
+"""This is the console for AirBnB"""
 import cmd
 
 
 class HBNBCommand(cmd.Cmd):
-    """ Definition of the hbnb console. """
-
+    """this class is entry point of the command interpreter
+    """
     prompt = "(hbnb) "
 
-    def empty(self):
-        pass
-
-    def do_quit(self):
-        """Quit the console."""
+    def do_quit(self, line):
+        """Quit command to exit the program"""
         return True
 
-    def do_EOF(self):
-        """Quit console at EOF."""
-        print("")
+    def do_EOF(self, line):
+        """Quit command to exit the program at end of file"""
         return True
 
 
