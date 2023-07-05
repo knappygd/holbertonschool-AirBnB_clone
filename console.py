@@ -11,12 +11,13 @@ class HBNBCommand(cmd.Cmd):
     def empty(self):
         pass
 
-    def do_quit(self):
+    def do_quit(self, line):
         """Quit the console."""
         return True
 
-    def do_EOF(self):
+    def do_EOF(self, line):
         """Quit console at EOF."""
+        print("")
         return True
 
 
