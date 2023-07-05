@@ -25,8 +25,8 @@ class FileStorage:
     def reload(self):
         try:
             with open(self.__file_path, "r") as file:
-                for k, v in (json.load(file)).items():
-                    v = eval(v["__class__"])(**v)
-                    self.__objects[k] = v
+                for key, value in (json.load(file)).items():
+                    value = eval(value["__class__"])(**value)
+                    self.__objects[key] = value
         except FileNotFoundError:
             pass
