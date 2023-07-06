@@ -37,6 +37,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
     def do_show(self, line):
+        """Prints the string representation of an instance."""
         try:
             if not line:
                 raise SyntaxError()
@@ -61,6 +62,7 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
 
     def do_destroy(self, line):
+        """Deletes an instance and saves the change into the JSON file."""
         try:
             if not line:
                 raise SyntaxError()
@@ -86,6 +88,7 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
 
     def do_all(self, line):
+        """Prints all string representation of all instances."""
         objects = storage.all()
         my_list = []
         if not line:
@@ -106,6 +109,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
 
     def do_update(self, line):
+        """Updates an instance by adding or updating attribute."""
         try:
             if not line:
                 raise SyntaxError()
