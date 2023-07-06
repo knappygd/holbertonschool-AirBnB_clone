@@ -9,7 +9,8 @@ class HBNBCommand(cmd.Cmd):
 
     prompt = "(hbnb) "
     classes = {
-        "BaseModel"
+        "BaseModel",
+        "User"
     }
 
     def emptyline(self):

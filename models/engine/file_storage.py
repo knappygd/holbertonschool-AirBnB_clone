@@ -27,7 +27,7 @@ class FileStorage:
         try:
             with open(self.__file_path, "r") as file:
                 for key, value in (json.load(file)).items():
-                    value = BaseModel(**value)
+                    value = eval(value["__class__"])(**value)
                     self.__objects[key] = value
         except FileNotFoundError:
             pass
