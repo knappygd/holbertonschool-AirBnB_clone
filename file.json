@@ -1,0 +1,26 @@
+{
+    "BaseModel.4080b951-6fcc-4ca0-8b8c-f7be8105829a": {
+        "id": "4080b951-6fcc-4ca0-8b8c-f7be8105829a",
+        "created_at": "2023-07-06T10:49:03.972849",
+        "updated_at": "2023-07-06T10:49:03.972993",
+        "__class__": "BaseModel"
+    },
+    "BaseModel.c3380f03-28be-4c4a-9b1f-4207709efecc": {
+        "id": "c3380f03-28be-4c4a-9b1f-4207709efecc",
+        "created_at": "2023-07-06T11:14:46.518507",
+        "updated_at": "2023-07-06T11:14:46.518565",
+        "__class__": "BaseModel"
+    },
+    "BaseModel.4d8e689b-8617-4a4a-8260-741dd1aea669": {
+        "id": "4d8e689b-8617-4a4a-8260-741dd1aea669",
+        "created_at": "2023-07-06T11:15:27.140396",
+        "updated_at": "2023-07-06T11:15:27.140409",
+        "__class__": "BaseModel"
+    },
+    "User.8242d496-d7d4-41b5-a49f-700c6f27ec4f": {
+        "id": "8242d496-d7d4-41b5-a49f-700c6f27ec4f",
+        "created_at": "2023-07-06T11:15:30.639080",
+        "updated_at": "2023-07-06T11:15:30.639104",
+        "__class__": "User"
+    }
+}
