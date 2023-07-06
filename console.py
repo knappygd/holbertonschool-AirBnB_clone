@@ -12,7 +12,7 @@ class HBNBCommand(cmd.Cmd):
         "BaseModel"
     }
 
-    def empty(self):
+    def emptyline(self):
         pass
 
     def do_quit(self, line):
