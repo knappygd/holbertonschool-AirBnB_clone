@@ -7,5 +7,5 @@ class User(BaseModel):
     """Defines the class User."""
     email = ""
     password = ""
-    firsta_name = ""
+    first_name = ""
     last_name = ""
