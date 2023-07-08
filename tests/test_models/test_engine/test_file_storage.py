@@ -51,6 +51,23 @@ class TestFileStorage(unittest.TestCase):
         self.assertIsNotNone(models.storage.all())
         self.assertIsNone(models.storage.reload())
 
+    def test_save_reload(self):
+        """
+            test save and reload method
+        """
+        self.storage.new(self.model1)
+        self.storage.save()
+        self.storage = FileStorage()
+        self.storage.reload()
+        obj_key = "BaseModel." + self.model1.id
+        obj_all = self.storage.all()
+        obj_storage = obj_all[obj_key]
+        self.assertIn(obj_key, self.storage.all())
+        self.assertTrue(self.model1.__dict__ == obj_storage.__dict__)
+        self.assertFalse(self.model1 is obj_storage)
+        self.assertIsInstance(obj_storage, BaseModel)
+        self.assertEqual(self.model1.id, obj_storage.id)
+
 
 if __name__ == "__main__":
     unittest.main()
