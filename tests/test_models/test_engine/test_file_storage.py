@@ -3,6 +3,7 @@
 import json
 import os
 import unittest
+import models
 from unittest.mock import patch, mock_open
 from models.base_model import BaseModel
 
@@ -11,6 +12,14 @@ from models.engine.file_storage import FileStorage
 class TestFileStorage(unittest.TestCase):
     def setUp(self):
         self.storage = FileStorage()
+    def tearDown(self):
+        """
+            delete the file.json when finish the test
+        """
+        try:
+            os.remove('file.json')
+        except FileNotFoundError:
+            pass
 
     def test_all_returns_dict(self):
         result = self.storage.all()
@@ -35,7 +44,12 @@ class TestFileStorage(unittest.TestCase):
         with open(temp_file, "r") as file:
             data = json.load(file)
             self.assertIn(key, data)
-        os.remove(temp_file)
+    def test_models_storage(self):
+        """
+            test if storage in init is on
+        """
+        self.assertIsNotNone(models.storage.all())
+        self.assertIsNone(models.storage.reload())
 
 
 if __name__ == "__main__":
