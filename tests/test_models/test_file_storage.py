@@ -7,7 +7,7 @@ from unittest.mock import patch, mock_open
 from models.base_model import BaseModel
 
 from models.engine.file_storage import FileStorage
-"""
+
 class TestFileStorage(unittest.TestCase):
     def setUp(self):
         self.storage = FileStorage()
@@ -40,4 +40,3 @@ class TestFileStorage(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-"""
