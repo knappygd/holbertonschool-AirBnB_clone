@@ -28,9 +28,6 @@ class TestState(unittest.TestCase):
         self.assertTrue(issubclass(State, BaseModel))
 
     def test_attributes(self):
-        """
-            test type and existence of all atributes
-        """
         state = State()
         self.assertTrue(isinstance(state, BaseModel))
         self.assertTrue(state, "name")

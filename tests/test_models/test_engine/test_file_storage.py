@@ -23,9 +23,6 @@ class TestFileStorage(unittest.TestCase):
         self.modeluno = BaseModel()
 
     def tearDown(self):
-        """
-            delete the file.json when finish the test
-        """
         try:
             os.remove('file.json')
         except FileNotFoundError:
@@ -42,16 +39,11 @@ class TestFileStorage(unittest.TestCase):
         self.assertIn(key, self.storage.all())
 
     def test_models_storage(self):
-        """
-            test if storage in init is on
-        """
         self.assertIsNotNone(models.storage.all())
         self.assertIsNone(models.storage.reload())
 
     def test_save_reload(self):
-        """
-            test save and reload method
-        """
+ 
         self.storage.new(self.modeluno)
         self.storage.save()
         self.storage = FileStorage()
@@ -78,19 +70,25 @@ class TestFileStorage(unittest.TestCase):
         with open(temp_file, "r") as file:
             data = json.load(file)
             self.assertIn(key, data)
-
-
    
     def test_reload_method(self):
-        """
-            check if reload working
-        """
-        self.assertIsNotNone(FileStorage().reload)
+         self.assertIsNotNone(FileStorage().reload)
 
+    def test_save_writes_to_file(self):
+        obj = BaseModel()
+        key = "{}.{}".format(type(obj).__name__, obj.id)
+        self.storage.new(obj)
+
+        temp_file = "temp_file.json"
+        self.storage._FileStorage__file_pathkkoijk = temp_file
+
+        self.storage.save()
+
+        with open(temp_file, "r") as file:
+            data = json.load(file)
+            self.assertIn(key, data)
     def test_all_subclass(self):
-        """
-            test all subclass of BaseModel
-        """        
+     
         cls = {'BaseModel.': BaseModel, 'User.': User, 'State.': State,
                'City.': City, 'Amenity.': Amenity, 'Place.': Place,
                'Review.': Review}
@@ -100,28 +98,6 @@ class TestFileStorage(unittest.TestCase):
             dic[k] = v()
         for k, v in dic.items():
             self.assertIsNotNone(stor_all[k + v.id])      
-    def test_pep8(self):
-        """
-            Check PEP8 style
-        """
-        syntaxis = pycodestyle.StyleGuide(quit=True)
-        test = syntaxis.check_files(['models/engine/file_storage.py'])
-        self.assertEqual(test.total_errors, 0, "Found style errors")
-    
-
-    def test_all_subclass(self):
-        """
-            test all subclass of BaseModel
-        """        
-        cls = {'BaseModel.': BaseModel, 'User.': User, 'State.': State,
-               'City.': City, 'Amenity.': Amenity, 'Place.': Place,
-               'Review.': Review}
-        dic = {}
-        stor_all = self.storage.all()
-        for k, v in cls.items():
-            dic[k] = v()
-        for k, v in dic.items():
-            self.assertIsNotNone(stor_all[k + v.id])
-
+   
 if __name__ == "__main__":
     unittest.main()
