@@ -4,8 +4,16 @@ import json
 import os
 import unittest
 import models
-from unittest.mock import patch, mock_open
+from unittest.mock import patch
 from models.base_model import BaseModel
+import json
+from models.base_model import BaseModel
+from models.user import User
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
 
 from models.engine.file_storage import FileStorage
 
@@ -33,19 +41,6 @@ class TestFileStorage(unittest.TestCase):
         self.storage.new(obj)
         self.assertIn(key, self.storage.all())
 
-    def test_save_writes_to_file(self):
-        obj = BaseModel()
-        key = "{}.{}".format(type(obj).__name__, obj.id)
-        self.storage.new(obj)
-
-        temp_file = "temp_file.json"
-        self.storage._FileStorage__file_pathkkoijk = temp_file
-
-        self.storage.save()
-
-        with open(temp_file, "r") as file:
-            data = json.load(file)
-            self.assertIn(key, data)
     def test_models_storage(self):
         """
             test if storage in init is on
@@ -69,6 +64,42 @@ class TestFileStorage(unittest.TestCase):
         self.assertFalse(self.modeluno is obj_storage)
         self.assertIsInstance(obj_storage, BaseModel)
         self.assertEqual(self.modeluno.id, obj_storage.id)
+
+    def test_save_writes_to_file(self):
+        obj = BaseModel()
+        key = "{}.{}".format(type(obj).__name__, obj.id)
+        self.storage.new(obj)
+
+        temp_file = "temp_file.json"
+        self.storage._FileStorage__file_pathkkoijk = temp_file
+
+        self.storage.save()
+
+        with open(temp_file, "r") as file:
+            data = json.load(file)
+            self.assertIn(key, data)
+
+
+   
+    def test_reload_method(self):
+        """
+            check if reload working
+        """
+        self.assertIsNotNone(FileStorage().reload)
+
+    def test_all_subclass(self):
+        """
+            test all subclass of BaseModel
+        """        
+        cls = {'BaseModel.': BaseModel, 'User.': User, 'State.': State,
+               'City.': City, 'Amenity.': Amenity, 'Place.': Place,
+               'Review.': Review}
+        dic = {}
+        stor_all = self.storage.all()
+        for k, v in cls.items():
+            dic[k] = v()
+        for k, v in dic.items():
+            self.assertIsNotNone(stor_all[k + v.id])      
 
 
 if __name__ == "__main__":
