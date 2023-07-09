@@ -100,7 +100,28 @@ class TestFileStorage(unittest.TestCase):
             dic[k] = v()
         for k, v in dic.items():
             self.assertIsNotNone(stor_all[k + v.id])      
+    def test_pep8(self):
+        """
+            Check PEP8 style
+        """
+        syntaxis = pycodestyle.StyleGuide(quit=True)
+        test = syntaxis.check_files(['models/engine/file_storage.py'])
+        self.assertEqual(test.total_errors, 0, "Found style errors")
+    
 
+    def test_all_subclass(self):
+        """
+            test all subclass of BaseModel
+        """        
+        cls = {'BaseModel.': BaseModel, 'User.': User, 'State.': State,
+               'City.': City, 'Amenity.': Amenity, 'Place.': Place,
+               'Review.': Review}
+        dic = {}
+        stor_all = self.storage.all()
+        for k, v in cls.items():
+            dic[k] = v()
+        for k, v in dic.items():
+            self.assertIsNotNone(stor_all[k + v.id])
 
 if __name__ == "__main__":
     unittest.main()
