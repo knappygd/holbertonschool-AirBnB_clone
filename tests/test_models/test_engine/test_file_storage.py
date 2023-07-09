@@ -12,6 +12,8 @@ from models.engine.file_storage import FileStorage
 class TestFileStorage(unittest.TestCase):
     def setUp(self):
         self.storage = FileStorage()
+        self.modeluno = BaseModel()
+
     def tearDown(self):
         """
             delete the file.json when finish the test
@@ -55,18 +57,18 @@ class TestFileStorage(unittest.TestCase):
         """
             test save and reload method
         """
-        self.storage.new(self.model1)
+        self.storage.new(self.modeluno)
         self.storage.save()
         self.storage = FileStorage()
         self.storage.reload()
-        obj_key = "BaseModel." + self.model1.id
+        obj_key = "BaseModel." + self.modeluno.id
         obj_all = self.storage.all()
         obj_storage = obj_all[obj_key]
         self.assertIn(obj_key, self.storage.all())
-        self.assertTrue(self.model1.__dict__ == obj_storage.__dict__)
-        self.assertFalse(self.model1 is obj_storage)
+        self.assertTrue(self.modeluno.__dict__ == obj_storage.__dict__)
+        self.assertFalse(self.modeluno is obj_storage)
         self.assertIsInstance(obj_storage, BaseModel)
-        self.assertEqual(self.model1.id, obj_storage.id)
+        self.assertEqual(self.modeluno.id, obj_storage.id)
 
 
 if __name__ == "__main__":
