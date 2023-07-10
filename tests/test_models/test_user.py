@@ -9,28 +9,17 @@ from models.base_model import BaseModel
 
 
 class TestUser(unittest.TestCase):
-    """
-        Test the class User
-    """
 
     def test_pep8(self):
-        """
-            Check PEP8 style
-        """
         syntaxis = pycodestyle.StyleGuide(quit=True)
         test = syntaxis.check_files(['models/user.py'])
         self.assertEqual(test.total_errors, 0, "Found style errors")
 
     def test_subclass(self):
-        """
-            test if User is a subclass of BaseModel
-        """
         self.assertTrue(issubclass(User, BaseModel))
 
     def test_attributes(self):
-        """
-            test type and existence of all atributes
-        """
+
         user = User()
         self.assertTrue(isinstance(user, BaseModel))
         self.assertTrue(user, "email")
