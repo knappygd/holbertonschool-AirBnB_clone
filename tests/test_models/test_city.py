@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-"""
-    Unittest of City
-"""
+
 import unittest
 import pycodestyle
 from models.city import City
@@ -17,7 +15,6 @@ class TestCity(unittest.TestCase):
         syntaxis = pycodestyle.StyleGuide(quit=True)
         test = syntaxis.check_files(['models/city.py'])
         self.assertEqual(test.total_errors, 0, "Found style errors")
-
 
     def test_attributes(self):
         city = City()

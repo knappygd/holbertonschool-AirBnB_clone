@@ -56,22 +56,22 @@ class TestFileStorage(unittest.TestCase):
         self.assertIsInstance(obj_storage, BaseModel)
         self.assertEqual(self.modeluno.id, obj_storage.id)
 
-    def test_save_writes_to_file(self):
-        obj = BaseModel()
-        key = "{}.{}".format(type(obj).__name__, obj.id)
-        self.storage.new(obj)
+def test_save_writes_to_file(self):
+    obj = BaseModel()
+    key = "{}.{}".format(type(obj).__name__, obj.id)
+    self.storage.new(obj)
 
-        temp_file = "temp_file.json"
-        self.storage._FileStorage__file_pathkkoijk = temp_file
+    temp_file = os.path.join(os.path.dirname(__file__), "temp_file.json")
+    self.storage._FileStorage__file_path = temp_file
 
-        self.storage.save()
+    self.storage.save()
 
-        with open(temp_file, "r") as file:
-            data = json.load(file)
-            self.assertIn(key, data)
+    with open(temp_file, "r") as file:
+        data = json.load(file)
+        self.assertIn(key, data)
    
-    def test_reload_method(self):
-         self.assertIsNotNone(FileStorage().reload)
+def test_reload_method(self):
+    self.assertIsNotNone(FileStorage().reload)
 
 def test_save_writes_to_file(self):
     obj = BaseModel()

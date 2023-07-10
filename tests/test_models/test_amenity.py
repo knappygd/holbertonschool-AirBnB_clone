@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-"""
-    Unittest of Amenity
-"""
+
 import unittest
 import pycodestyle
 from models.amenity import Amenity

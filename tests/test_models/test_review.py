@@ -1,12 +1,9 @@
 #!/usr/bin/python3
-"""
-    Unittest of Review
-"""
+
 import unittest
 import pycodestyle
 from models.review import Review
 from models.base_model import BaseModel
-
 
 class TestReview(unittest.TestCase):
 

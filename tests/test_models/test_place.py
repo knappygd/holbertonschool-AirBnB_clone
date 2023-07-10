@@ -1,7 +1,5 @@
 #!/usr/bin/python3
-"""
-    Unittest of Place
-"""
+
 import unittest
 import pycodestyle
 from models.place import Place
