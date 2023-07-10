@@ -43,7 +43,6 @@ class TestFileStorage(unittest.TestCase):
         self.assertIsNone(models.storage.reload())
 
     def test_save_reload(self):
- 
         self.storage.new(self.modeluno)
         self.storage.save()
         self.storage = FileStorage()
@@ -74,21 +73,21 @@ class TestFileStorage(unittest.TestCase):
     def test_reload_method(self):
          self.assertIsNotNone(FileStorage().reload)
 
-    def test_save_writes_to_file(self):
-        obj = BaseModel()
-        key = "{}.{}".format(type(obj).__name__, obj.id)
-        self.storage.new(obj)
+def test_save_writes_to_file(self):
+    obj = BaseModel()
+    key = "{}.{}".format(type(obj).__name__, obj.id)
+    self.storage.new(obj)
 
-        temp_file = "temp_file.json"
-        self.storage._FileStorage__file_pathkkoijk = temp_file
+    temp_file = "temp_file.json"
+    self.storage._FileStorage__file_path = temp_file
 
-        self.storage.save()
+    self.storage.save()
 
-        with open(temp_file, "r") as file:
-            data = json.load(file)
-            self.assertIn(key, data)
+    with open(temp_file, "r") as file:
+        data = json.load(file)
+        self.assertIn(key, data)
+
     def test_all_subclass(self):
-     
         cls = {'BaseModel.': BaseModel, 'User.': User, 'State.': State,
                'City.': City, 'Amenity.': Amenity, 'Place.': Place,
                'Review.': Review}
