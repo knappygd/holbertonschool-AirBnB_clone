@@ -53,13 +53,15 @@ button:hover {
     width: 25%;
 }
 
-.popover {
+.locations .popover,
+.amenities .popover {
     visibility: hidden;
     width: 100%;
     border: 1px solid #ddd;
     border-radius: 4px;
     background-color: #fafafa;
-    padding-bottom: 25px;
+    height: auto;
+    margin-top: 19px;
 }
 
 .popover ul {
